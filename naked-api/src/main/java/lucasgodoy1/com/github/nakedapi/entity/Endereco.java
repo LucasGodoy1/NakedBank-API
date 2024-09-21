@@ -1,43 +1,46 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
+import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lucasgodoy1.com.github.nakedapi.constants.Estado;
+import lucasgodoy1.com.github.nakedapi.constants.UF;
 
 import java.io.Serializable;
 
-@Getter @Setter @ToString
-@RequiredArgsConstructor
 @Entity
-@Table(name="tb_dados_endereco")
+@RequiredArgsConstructor
+@Table(name = "tb_endereco")
 public class Endereco implements Serializable {
 
     @Id
-    @Column(name="cpf", nullable = false, unique = true, length = 200)
-    private Long cpf;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "endereco_id")
+    private Long id;
 
-    @Column(name="nome", nullable = false)
-    private String nomeCompleto;
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente clienteID;
 
-    @Column(name="rua")
+    @Column(name="rua", nullable=false)
     private String rua;
 
-    @Column(name="telefone")
-    private String telefone;
+    @Column(name="numero", nullable=false, length=5)
+    private String numero;
 
-    @Column(name="cep")
+    @Column(name="cep", nullable=false, length=8)
     private String cep;
 
     @Column(name="bairro")
     private String bairro;
 
-    @Column(name="nacionalidade")
-    private String nacionalidade;
+    @Column
+    private String complemento;
+
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
+
+    @Enumerated(EnumType.STRING)
+    private UF uf;
+
 
 }

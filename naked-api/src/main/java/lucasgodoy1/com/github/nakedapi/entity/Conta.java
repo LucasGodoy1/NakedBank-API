@@ -1,12 +1,11 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lucasgodoy1.com.github.nakedapi.service.ContaService;
+import lucasgodoy1.com.github.nakedapi.constants.TipoConta;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,40 +19,26 @@ import java.util.List;
 public class Conta implements Serializable {
 
     @Id
-    @Column(name = "NUMERO_CONTA")
-    private String numeroDaConta = ContaService.geraNumeroConta(1, 10, 7);
+    @Column(name = "numero_conta")
+    private String numeroDaConta;
 
-    @Column(name = "NUMERO_AGENCIA")
-    private String numeroAgencia = ContaService.geraNumeroConta(1, 10, 5);
+    @Column(name = "numero_agencia")
+    private String numeroAgencia ;
 
-    @Column(name = "SALDO")
+
+    @Column(name = "saldo")
     private Double saldo = 0.0;
 
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nomeCompleto;
 
-    @Column(name = "TIPO_CONTA")
+    @Column(name = "tipo_conta")
+    @Enumerated(EnumType.STRING)
     private TipoConta tipoDaConta;
 
-    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Extrato> extratoList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente clienteID;
 
-    @Override
-    public String toString() {
-        return  "Conta: "
-                + numeroDaConta + "\n" +
-                "Agencia: "
-                + numeroAgencia
-                + "\n"
-                + String.format("Saldo: R$: %.2f", saldo)
-                + "\n"
-                + " Nome: "
-                + nomeCompleto
-                + "\n" +
-                "Tipo: " + tipoDaConta
-                + "\n"
-                + "Extrato: "
-                + extratoList;
-    }
+
 }

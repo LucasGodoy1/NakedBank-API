@@ -18,6 +18,7 @@ public class Extrato implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "extrato_id")
     private Long id;
 
     @Column(name = "NOME_TRANSACAO")
@@ -34,10 +35,9 @@ public class Extrato implements Serializable {
         this.valor = valor;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTA_ID")
-    @JsonBackReference
-    private Conta conta;
+    @ManyToOne
+    @JoinColumn(name = "numero_conta")
+    private Conta contaID;
 
     @Override
     public String toString() {

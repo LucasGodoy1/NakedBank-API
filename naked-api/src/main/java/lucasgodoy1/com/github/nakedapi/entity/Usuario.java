@@ -18,11 +18,8 @@ import java.time.LocalDateTime;
 @Table(name="tb_usuario")
 public class Usuario implements Serializable {
     @Id
-    @Column(name="cpf", nullable = false, unique = true, length = 200)
-    private Long cpf;
-
-    @Column(name="nome", nullable = false)
-    private String nomeCompleto;
+    @Column(name="cpf", nullable = false, unique = true, length = 11)
+    private String cpf;
 
     @Column(name="email", nullable = false)
     private String email;
