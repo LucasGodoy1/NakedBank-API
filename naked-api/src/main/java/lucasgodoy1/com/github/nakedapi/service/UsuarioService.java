@@ -17,33 +17,32 @@ public class UsuarioService {
     public void salvar(Usuario u){
         repository.save(u);
     }
+
     @Transactional
     public void salvarVarios(List<Usuario> u){
         repository.saveAll(u);
     }
 
     @Transactional
-    public Usuario encontrePorID(Long id){
+    public Usuario encontrePorID(String id){
         Usuario u = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
         return u;
     }
 
     @Transactional
-    public  void alterarSenha(Long id, String senha){
+    public  void alterarSenha(String id, String senha){
         Usuario usuario = encontrePorID(id);
         usuario.setPassword(senha);
     }
 
     @Transactional
     public List<Usuario> listaDeCadastros(){
-        //List<Usuario> lista = repository.findAll();
-        //para diminuir futuros problemas de performance a chamada será direta sem variavel
         return repository.findAll();
     }
 
 
     @Transactional
-    public void deletePorID(Long id){
+    public void deletePorID(String id){
         repository.deleteById(id);
     }
 

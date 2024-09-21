@@ -1,14 +1,16 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+
+@ToString
 @Getter
 @Setter
 @Entity
@@ -39,12 +41,6 @@ public class Extrato implements Serializable {
     @JoinColumn(name = "numero_conta")
     private Conta contaID;
 
-    @Override
-    public String toString() {
-        return "Extrato: " +
-                nomeDaTransacao + "\n" +
-                String.format("R$: %.2f", valor) + "\n" +
-                "DATA: " + dataDaCompra;
-    }
+
 }
 

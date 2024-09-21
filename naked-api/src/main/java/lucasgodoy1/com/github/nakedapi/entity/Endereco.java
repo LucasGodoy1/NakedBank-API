@@ -1,14 +1,20 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lucasgodoy1.com.github.nakedapi.constants.Estado;
 import lucasgodoy1.com.github.nakedapi.constants.UF;
+import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
 
 import java.io.Serializable;
 
 @Entity
 @RequiredArgsConstructor
+@Getter@Setter
+@ToString
 @Table(name = "tb_endereco")
 public class Endereco implements Serializable {
 
@@ -42,5 +48,14 @@ public class Endereco implements Serializable {
     @Enumerated(EnumType.STRING)
     private UF uf;
 
+    public Endereco(CadastroDTO cadastroDTO) {
+        this.rua = cadastroDTO.rua();
+        this.numero = cadastroDTO.numero();
+        this.cep = cadastroDTO.cep();
+        this.bairro = cadastroDTO.bairro();
+        this.complemento = cadastroDTO.complemento();
+        this.estado = cadastroDTO.estado();
+        this.uf = cadastroDTO.uf();
+    }
 
 }

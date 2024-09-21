@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
+import lucasgodoy1.com.github.nakedapi.hash.HashLogin;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -31,5 +33,12 @@ public class Usuario implements Serializable {
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
 
+
+
+    public Usuario(CadastroDTO cadastro) {
+        this.cpf = cadastro.cpf();
+        this.email = cadastro.email();
+        this.password = HashLogin.encoder(cadastro.password());
+    }
 
 }

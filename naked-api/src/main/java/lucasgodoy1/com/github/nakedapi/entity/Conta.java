@@ -6,10 +6,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lucasgodoy1.com.github.nakedapi.constants.TipoConta;
+import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
+import lucasgodoy1.com.github.nakedapi.service.NumerosAleatorios;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Getter
 @Setter
@@ -25,9 +26,8 @@ public class Conta implements Serializable {
     @Column(name = "numero_agencia")
     private String numeroAgencia ;
 
-
     @Column(name = "saldo")
-    private Double saldo = 0.0;
+    private Double saldo = 0.00;
 
     @Column(name = "nome")
     private String nomeCompleto;
@@ -40,5 +40,10 @@ public class Conta implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente clienteID;
 
-
+    public Conta(CadastroDTO cadastroDTO) {
+        this.numeroDaConta = NumerosAleatorios.geraNumeroConta(1,9,10);
+        this.numeroAgencia = cadastroDTO.numeroAgencia();
+        this.nomeCompleto = cadastroDTO.nomeCompleto();
+        this.tipoDaConta = cadastroDTO.tipoDaConta();
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
 
 import java.io.Serializable;
 
@@ -37,5 +38,10 @@ public class Cliente implements Serializable {
     @Column(name = "telefone", length = 15)
     private String telefone;
 
+    public Cliente(CadastroDTO cadastro) {
+        this.nomeCompleto = cadastro.nomeCompleto();
+        this.nacionalidade = cadastro.nacionalidade();
+        this.telefone = cadastro.telefone();
+    }
 
 }
