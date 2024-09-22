@@ -1,5 +1,6 @@
 package lucasgodoy1.com.github.nakedapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
 import lucasgodoy1.com.github.nakedapi.service.CadastroService;
@@ -15,7 +16,7 @@ public class CadastroWebController {
     private final CadastroService cadastroService;
 
     @PostMapping("create")
-    public ResponseEntity<CadastroDTO> cadastro(@RequestBody CadastroDTO cadastroDTO) {
+    public ResponseEntity<CadastroDTO> cadastro(@RequestBody @Valid CadastroDTO cadastroDTO) {
         cadastroService.cadastroInicial(cadastroDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(cadastroDTO);
 
