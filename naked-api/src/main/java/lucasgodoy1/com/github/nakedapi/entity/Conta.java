@@ -1,6 +1,5 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,7 @@ import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
 import lucasgodoy1.com.github.nakedapi.service.NumerosAleatorios;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 
 @Getter
@@ -26,8 +26,8 @@ public class Conta implements Serializable {
     @Column(name = "numero_agencia")
     private String numeroAgencia ;
 
-    @Column(name = "saldo")
-    private Double saldo = 0.00;
+    @Column(name = "saldo", columnDefinition = "DECIMAL(19, 2)")
+    private double saldo = 0.00;
 
     @Column(name = "nome")
     private String nomeCompleto;

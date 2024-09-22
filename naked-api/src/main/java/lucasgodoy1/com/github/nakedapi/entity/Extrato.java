@@ -29,17 +29,22 @@ public class Extrato implements Serializable {
     @Column(name = "VALOR")
     private Double valor;
 
+
+
     @Column(name = "DATA_COMPRA")
     private LocalDateTime dataDaCompra = LocalDateTime.now();
-
-    public Extrato(String nomeDaTransacao, Double valor) {
-        this.nomeDaTransacao = nomeDaTransacao;
-        this.valor = valor;
-    }
 
     @ManyToOne
     @JoinColumn(name = "numero_conta")
     private Conta contaID;
+
+    public Extrato(String nomeDaTransacao, Double valor, Conta contaID) {
+        this.nomeDaTransacao = nomeDaTransacao;
+        this.valor = valor;
+        this.contaID = contaID;
+    }
+
+
 
 
 }
