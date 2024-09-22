@@ -1,5 +1,6 @@
 package lucasgodoy1.com.github.nakedapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,8 @@ public class Extrato implements Serializable {
     private LocalDateTime dataDaCompra = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "numero_conta")
+    @JsonBackReference
+    @JoinColumn(name = "conta_id")
     private Conta contaID;
 
     public Extrato(String nomeDaTransacao, Double valor, Conta contaID) {

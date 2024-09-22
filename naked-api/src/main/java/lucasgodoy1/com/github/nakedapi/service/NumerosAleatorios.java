@@ -13,6 +13,8 @@ public class NumerosAleatorios {
             int digito = random.nextInt(maiorValor - menorValor) + menorValor;
             numeroConta.append(digito);
         }
+        numeroConta.append("-");
+        numeroConta.append(random.nextInt(9) + 1);
         return numeroConta.toString();
     }
 

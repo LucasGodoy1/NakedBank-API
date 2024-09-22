@@ -18,10 +18,6 @@ public class UsuarioService {
         repository.save(u);
     }
 
-    @Transactional
-    public void salvarVarios(List<Usuario> u){
-        repository.saveAll(u);
-    }
 
     @Transactional
     public Usuario encontrePorID(String id){

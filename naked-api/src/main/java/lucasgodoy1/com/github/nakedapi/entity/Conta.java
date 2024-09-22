@@ -9,7 +9,6 @@ import lucasgodoy1.com.github.nakedapi.dto.CadastroDTO;
 import lucasgodoy1.com.github.nakedapi.service.NumerosAleatorios;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 
 @Getter
@@ -20,7 +19,7 @@ import java.math.BigDecimal;
 public class Conta implements Serializable {
 
     @Id
-    @Column(name = "numero_conta")
+    @Column(name = "conta_id")
     private String numeroDaConta;
 
     @Column(name = "numero_agencia")
@@ -41,7 +40,7 @@ public class Conta implements Serializable {
     private Cliente clienteID;
 
     public Conta(CadastroDTO cadastroDTO) {
-        this.numeroDaConta = NumerosAleatorios.geraNumeroConta(1,9,10);
+        this.numeroDaConta = NumerosAleatorios.geraNumeroConta(1,9,7);
         this.numeroAgencia = cadastroDTO.numeroAgencia();
         this.nomeCompleto = cadastroDTO.nomeCompleto();
         this.tipoDaConta = cadastroDTO.tipoDaConta();

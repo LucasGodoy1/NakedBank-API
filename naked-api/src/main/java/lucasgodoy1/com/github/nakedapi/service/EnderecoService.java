@@ -28,12 +28,5 @@ public class EnderecoService {
         return e;
     }
 
-    @Transactional
-    public void deleteInfoPorID(Long id){
-        enderecoRepository.deleteById(id);
-    }
-
-
-
 
 }

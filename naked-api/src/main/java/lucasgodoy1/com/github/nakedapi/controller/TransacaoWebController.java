@@ -35,14 +35,13 @@ public class TransacaoWebController {
     }
 
     @PostMapping("/deposito")
-    public ResponseEntity<Boolean> transferencia(@RequestParam String conta, @RequestParam Double valor ){
-        Conta conta1 = contaService.encontrePorID(conta);
-        double novoSaldo = conta1.getSaldo() + valor;
-        conta1.setSaldo(novoSaldo);
+    public ResponseEntity<Boolean> transferencia(@RequestParam String numeroConta, @RequestParam Double valor ){
+        Conta conta = contaService.encontrePorID(numeroConta);
+        conta.setSaldo(conta.getSaldo() + valor);
 
-        contaService.salvar(conta1);
+        contaService.salvar(conta);
 
-        Extrato extrato = new Extrato("Deposito Recebido!", valor, conta1);
+        Extrato extrato = new Extrato("Deposito Recebido!", valor, conta);
         extratoService.salvar(extrato);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
