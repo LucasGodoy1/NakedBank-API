@@ -19,7 +19,7 @@ Modelagem do Banco de Dados
 
 
 
-<img align="center" alt="modelagem-db" height="300" width="500" src="https://i.ibb.co/Q6nVPpg/versao-final.png">
+<img align="center" alt="modelagem-db" height="300" width="550" src="https://i.ibb.co/Q6nVPpg/versao-final.png">
 
 descrição das tabelas e suas relações, conforme ilustrado no diagrama do banco de dados:
 
